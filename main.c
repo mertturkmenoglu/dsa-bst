@@ -40,7 +40,7 @@
  * IDE:
  * CLion 2019.1.2
  * Build #CL-191.6707.69, built on April 18, 2019
- * 
+ *
  * @author Mert Turkmenoglu
  */
 
@@ -89,6 +89,8 @@ struct Node *search(struct Node *root, int id);
 struct Node *parseString(char *str);
 
 Boolean importUserFromFile(struct Node *head);
+
+void friends(struct Node *head, int id);
 
 
 int main() {
@@ -430,4 +432,19 @@ Boolean importUserFromFile(struct Node *head) {
     fclose(fptr);
 
     return True;
+}
+
+
+/**
+ * Print a users friends
+ * @param head is the root of the tree
+ * @param id is the users id to print friends
+ */
+void friends(struct Node *head, int id) {
+    struct Node *user = search(head, id);
+    int i;
+
+    for (i = 0; i < user->friendsCount; i++) {
+        printUserInfo(search(head, id));
+    }
 }
