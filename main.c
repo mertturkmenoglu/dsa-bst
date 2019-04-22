@@ -15,14 +15,14 @@ extern int errno;
 #define MAX_PATH_SIZE 100
 #define MAX_USER_INFO_SIZE 200
 
-typedef struct {
+struct Node{
     int id;
     char *name;
     int friends[MAX_FRIEND_SIZE];
     int friendsCount;
     struct Node *left;
     struct Node *right;
-} Node;
+};
 
 typedef int Boolean;
 
@@ -31,11 +31,11 @@ void clearScreen(int osFlag);
 
 void printMenu();
 
-Boolean caseHandler(Node *head, int choice);
+Boolean caseHandler(struct Node *head, int choice);
 
-Node *createNewUser(int id, char *name, int *friends, int friendsCount);
+struct Node *createNewUser(int id, char *name, const int *friends, int friendsCount);
 
-void printUserInfo(Node *user);
+void printUserInfo(struct Node *user);
 
 
 int main() {
@@ -48,7 +48,7 @@ int main() {
     int osFlag;
     int choice;
     Boolean exitFlag = False;
-    Node *head = NULL;
+    struct Node *head = NULL;
 
     printf("Welcome. For further operations, please state your Operating system:\n");
     printf("For Linux, press 1\n");
@@ -109,7 +109,7 @@ void clearScreen(int osFlag) {
 * @param head is the head of the binary search tree
 * @param choice is the function number
 */
-Boolean caseHandler(Node *head, int choice) {
+Boolean caseHandler(struct Node *head, int choice) {
     Boolean isSuccess = True;
     switch (choice) {
         case 1:
@@ -179,10 +179,10 @@ void printMenu() {
  * @param friendsCount is the total friend number
  * @return a new user instance
  */
-Node *createNewUser(int id, char *name, int *friends, int friendsCount) {
-    Node *newUser;
+struct Node *createNewUser(int id, char *name, const int *friends, int friendsCount) {
+    struct Node *newUser;
     // Memory allocation for struct
-    newUser = (Node *) malloc(sizeof(Node));
+    newUser = (struct Node *) malloc(sizeof(struct Node));
 
     // Value assignments
     newUser->id = id;
@@ -211,7 +211,7 @@ Node *createNewUser(int id, char *name, int *friends, int friendsCount) {
  * Print user information
  * @param user is the given user
  */
-void printUserInfo(Node *user) {
+void printUserInfo(struct Node *user) {
     printf("**********\n");
     printf("ID:\t%d\n", user->id);
     printf("Name:\t%s\n", user->name);
@@ -224,4 +224,31 @@ void printUserInfo(Node *user) {
     }
 
     printf("\n**********\n");
+}
+
+
+/**
+ * Search the given user in the tree
+ * @param id is the searched user's id
+ * @param head is the root of the tree
+ */
+struct Node *search(struct Node *root, int id) {
+    // If root is null, return NULL
+    if (root == NULL) {
+        return NULL;
+    }
+
+    // If key is root's key, return root
+    if (root->id == id) {
+        return root;
+    }
+
+    // If id is greater than root's id
+    // Look for the right sub-tree
+    if (root->id < id)
+        return search(root->right, id);
+
+    // Id is less than root's id
+    // Look for the left sub-tree
+    return search(root->left, id);
 }
