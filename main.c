@@ -165,3 +165,38 @@ void printMenu() {
     printf("\n0. Exit");
     printf("\n---------------\n");
 }
+
+/**
+ * Creates a new user with given params
+ * @param id is the user id
+ * @param name is user name
+ * @param friends is the array of friend's ids
+ * @param friendsCount is the total friend number
+ * @return a new user instance
+ */
+Node *createNewUser(int id, char *name, int *friends, int friendsCount) {
+    Node *newUser;
+    // Memory allocation for struct
+    newUser = (Node*) malloc(sizeof(Node));
+
+    // Value assignments
+    newUser->id = id;
+    strcpy(newUser->name, name);
+
+    // Friend list assignment
+    int i;
+    for (i = 0; i < friendsCount; i++) {
+        newUser->friends[i] = friends[i];
+    }
+
+    // Total friend count
+    newUser->friendsCount = friendsCount;
+
+    // A new node has no children
+    // Left and right node pointers should be NULL
+    newUser->left = NULL;
+    newUser->right = NULL;
+
+    // Return a pointer to new user
+    return newUser;
+}
