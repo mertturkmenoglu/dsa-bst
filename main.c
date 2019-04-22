@@ -33,6 +33,10 @@ void printMenu();
 
 Boolean caseHandler(Node *head, int choice);
 
+Node *createNewUser(int id, char *name, int *friends, int friendsCount);
+
+void printUserInfo(Node *user);
+
 
 int main() {
     /**
@@ -166,6 +170,7 @@ void printMenu() {
     printf("\n---------------\n");
 }
 
+
 /**
  * Creates a new user with given params
  * @param id is the user id
@@ -177,7 +182,7 @@ void printMenu() {
 Node *createNewUser(int id, char *name, int *friends, int friendsCount) {
     Node *newUser;
     // Memory allocation for struct
-    newUser = (Node*) malloc(sizeof(Node));
+    newUser = (Node *) malloc(sizeof(Node));
 
     // Value assignments
     newUser->id = id;
@@ -199,4 +204,24 @@ Node *createNewUser(int id, char *name, int *friends, int friendsCount) {
 
     // Return a pointer to new user
     return newUser;
+}
+
+
+/**
+ * Print user information
+ * @param user is the given user
+ */
+void printUserInfo(Node *user) {
+    printf("**********\n");
+    printf("ID:\t%d\n", user->id);
+    printf("Name:\t%s\n", user->name);
+    printf("Friend\'s ID\'s:\n");
+
+    // Print user's friends' id's
+    int i;
+    for (i = 0; i < user->friendsCount; i++) {
+        printf("%d\t", user->friends[i]);
+    }
+
+    printf("\n**********\n");
 }
