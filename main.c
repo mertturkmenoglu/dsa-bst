@@ -41,6 +41,8 @@ struct Node *search(struct Node *root, int id);
 
 struct Node *parseString(char *str);
 
+Boolean importUserFromFile(struct Node *head);
+
 
 int main() {
     /**
@@ -345,4 +347,40 @@ struct Node *parseString(char *str) {
 
     // Return a new user with given information
     return createNewUser(id, name, list, k);
+}
+
+
+/**
+ * Import user information from a file
+ * @param head is the root of the tree
+ */
+Boolean importUserFromFile(struct Node *head) {
+    FILE *fptr;
+    char filePath[MAX_PATH_SIZE];
+    char tempStr[MAX_USER_INFO_SIZE];
+
+    printf("Please enter file name: ");
+    fscanf(stdin, "%s", filePath);
+
+    // Open file in read mode
+    fptr = fopen(filePath, "r");
+
+    // Error handling
+    if (fptr == NULL) {
+        fprintf(stderr, "Error No: %d\n", errno);
+        perror("Error: File not found\n");
+        fprintf(stderr, "%s\n", strerror(errno));
+        fclose(fptr);
+        exit(EXIT_FAILURE);
+    }
+
+    // Read line by line and parse the string
+    while (fgets(tempStr, MAX_USER_INFO_SIZE - 1, fptr) != NULL) {
+        parseString(tempStr);
+    }
+
+    // Close file stream
+    fclose(fptr);
+
+    return True;
 }
