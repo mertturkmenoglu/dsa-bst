@@ -15,7 +15,7 @@ extern int errno;
 #define MAX_PATH_SIZE 100
 #define MAX_USER_INFO_SIZE 200
 
-struct Node{
+struct Node {
     int id;
     char *name;
     int friends[MAX_FRIEND_SIZE];
@@ -36,6 +36,10 @@ Boolean caseHandler(struct Node *head, int choice);
 struct Node *createNewUser(int id, char *name, const int *friends, int friendsCount);
 
 void printUserInfo(struct Node *user);
+
+struct Node *search(struct Node *root, int id);
+
+struct Node *parseString(char *str);
 
 
 int main() {
@@ -251,4 +255,94 @@ struct Node *search(struct Node *root, int id) {
     // Id is less than root's id
     // Look for the left sub-tree
     return search(root->left, id);
+}
+
+
+/**
+ * Parse the given string
+ * @param str is the given string
+ * @return a user with parsed information
+ */
+struct Node *parseString(char *str) {
+    /**
+     * temp string is for holding temporary information
+     * after every loop, it will transform to other form
+     * of information. (String to integer, string to string, etc.)
+     * charToStr is a tool for reading a character
+     * and appending to a string.
+     */
+    char temp[50];
+    char charToStr[50];
+
+    // Strings are empty at first place
+    strcpy(temp, "");
+    strcpy(charToStr, "");
+
+    // Our character variable holds the first char of the string
+    // i is the index variable
+    char c = str[0];
+    int i = 0;
+
+    // Read id part
+    while ((c != ',')) {
+        sprintf(charToStr, "%c", str[i]);
+        strcat(temp, charToStr);
+        i++;
+        c = str[i];
+    }
+
+    // Convert string to integer
+    int id = atoi(temp);
+
+    // Variable arranging before next part
+    i++;
+    c = str[i];
+    strcpy(temp, "");
+    strcpy(charToStr, "");
+
+    // Read name part
+    // Differently from id part, after name part
+    // There is no obligation for friend's id part
+    // There must be extra conditions for this state
+    while ((c != ',') && (c != '\n') && (c != '\0')) {
+        sprintf(charToStr, "%c", str[i]);
+        strcat(temp, charToStr);
+        i++;
+        c = str[i];
+    }
+
+    // Copy temporary string to name
+    char name[50];
+    strcpy(name, temp);
+
+    i++;
+    c = str[i];
+    strcpy(temp, "");
+    strcpy(charToStr, "");
+    int k = 0;
+    int list[50];
+
+    // Read friends part
+    // Every id is seperated from the
+    // previous one with a '-'
+    // In loop, every else branch drops
+    // means we got another id
+    while ((c != '\n') && (c != '\0')) {
+        if (isdigit(c)) {
+            sprintf(charToStr, "%c", str[i]);
+            strcat(temp, charToStr);
+            i++;
+            c = str[i];
+        } else {
+            // Add id to list
+            list[k++] = atoi(temp);
+            i++;
+            c = str[i];
+            strcpy(temp, "");
+            strcpy(charToStr, "");
+        }
+    }
+
+    // Return a new user with given information
+    return createNewUser(id, name, list, k);
 }
