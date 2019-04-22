@@ -1,0 +1,167 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <errno.h>
+
+extern int errno;
+
+#define True 1
+#define False 0
+
+#define MAX_NAME_SIZE 30
+#define MAX_FRIEND_SIZE 50
+
+#define MAX_PATH_SIZE 100
+#define MAX_USER_INFO_SIZE 200
+
+typedef struct {
+    int id;
+    char *name;
+    int friends[MAX_FRIEND_SIZE];
+    int friendsCount;
+    struct Node *left;
+    struct Node *right;
+} Node;
+
+typedef int Boolean;
+
+
+void clearScreen(int osFlag);
+
+void printMenu();
+
+Boolean caseHandler(Node *head, int choice);
+
+
+int main() {
+    /**
+     * osFlag: Holds user operating system information for system commands
+     * choice: Holds operation information
+     * exitFlag: Holds true operation value about loops
+     * head: Head of the Binary Search tree
+     */
+    int osFlag;
+    int choice;
+    Boolean exitFlag = False;
+    Node *head = NULL;
+
+    printf("Welcome. For further operations, please state your Operating system:\n");
+    printf("For Linux, press 1\n");
+    printf("For Windows, press 2\n");
+
+    /* Take operation system information from user */
+    do {
+        scanf("%d", &osFlag);
+        if ((osFlag != 1) && (osFlag != 2))
+            printf("You entered invalid number. Try again.\n");
+        else
+            exitFlag = True;
+    } while (exitFlag != True);
+
+    exitFlag = False;
+
+    /**
+     * Main loop. Depending on the input, it calls functions
+     * or exits the loop
+     */
+    do {
+        clearScreen(osFlag);
+        printMenu();
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+        if ((choice < 0) || (choice > 8)) {
+            printf("You entered invalid number. Please check again\n");
+        }
+        if (choice == 0) {
+            exitFlag = True;
+        } else {
+            Boolean isSuccess = caseHandler(head, choice);
+            if (isSuccess == False) {
+                exit(-1);
+            }
+        }
+    } while (exitFlag != True);
+
+    // Indicates successfull termination
+    return 0;
+}
+
+
+/**
+ * This function clears terminal screen
+ * @param osFlag is operating system information
+ */
+void clearScreen(int osFlag) {
+    if (osFlag == 1)
+        system("clear");
+    else
+        system("cls");
+}
+
+
+/**
+* caseHandler function handles input cases
+* @param head is the head of the binary search tree
+* @param choice is the function number
+*/
+Boolean caseHandler(Node *head, int choice) {
+    Boolean isSuccess = True;
+    switch (choice) {
+        case 1:
+            printf("\nYou chose insertNewUser.\n");
+            // TODO: insertNewUser call
+            break;
+        case 2:
+            printf("\nYou chose deleteUser.\n");
+            // TODO: deleteUser call
+            break;
+        case 3:
+            printf("\nYou chose contains.\n");
+            // TODO: contains call
+            break;
+        case 4:
+            printf("\nYou chose friends.\n");
+            // TODO: friends call
+            break;
+        case 5:
+            printf("\nYou chose size.\n");
+            // TODO: size call
+            break;
+        case 6:
+            printf("\nYou chose printNext.\n");
+            // TODO: printNext call
+            break;
+        case 7:
+            printf("\nYou chose printGreater.\n");
+            // TODO: printGreater call
+            break;
+        case 8:
+            printf("\nYou chose printInOrder.\n");
+            // TODO: printInOrder call
+            break;
+        default:
+            // TODO: Improve error handling;
+            printf("Error!");
+            break;
+    }
+    return isSuccess;
+}
+
+
+/**
+ * printMenu function prints function names
+ * and numbers to terminal
+ */
+void printMenu() {
+    printf("1. insertNewUser");
+    printf("\n2. deleteUser");
+    printf("\n3. contains");
+    printf("\n4. friends");
+    printf("\n5. size");
+    printf("\n6. printNext");
+    printf("\n7. printGreater");
+    printf("\n8. printInOrder");
+    printf("\n0. Exit");
+    printf("\n---------------\n");
+}
