@@ -78,7 +78,7 @@ void clearScreen(int osFlag);
 
 void printMenu();
 
-Boolean caseHandler(struct Node *head, int choice);
+Boolean caseHandler(struct Node *root, int choice);
 
 struct Node *createNewUser(int id, char *name, const int *friends, int friendsCount);
 
@@ -88,9 +88,9 @@ struct Node *search(struct Node *root, int id);
 
 struct Node *parseString(char *str);
 
-Boolean importUserFromFile(struct Node *head);
+Boolean importUserFromFile(struct Node *root);
 
-void friends(struct Node *head, int id);
+void friends(struct Node *root, int id);
 
 
 int main() {
@@ -98,12 +98,12 @@ int main() {
      * osFlag: Holds user operating system information for system commands
      * choice: Holds operation information
      * exitFlag: Holds true operation value about loops
-     * head: Head of the Binary Search tree
+     * root: Root element of the Binary Search tree
      */
     int osFlag;
     int choice;
     Boolean exitFlag = False;
-    struct Node *head = NULL;
+    struct Node *root = NULL;
 
     printf("Welcome. For further operations, please state your Operating system:\n");
     printf("For Linux, press 1\n");
@@ -135,7 +135,7 @@ int main() {
         if (choice == 0) {
             exitFlag = True;
         } else {
-            Boolean isSuccess = caseHandler(head, choice);
+            Boolean isSuccess = caseHandler(root, choice);
             if (isSuccess == False) {
                 exit(-1);
             }
@@ -161,10 +161,10 @@ void clearScreen(int osFlag) {
 
 /**
 * caseHandler function handles input cases
-* @param head is the head of the binary search tree
+* @param root is the root element of the binary search tree
 * @param choice is the function number
 */
-Boolean caseHandler(struct Node *head, int choice) {
+Boolean caseHandler(struct Node *root, int choice) {
     Boolean isSuccess = True;
     switch (choice) {
         case 1:
@@ -285,7 +285,7 @@ void printUserInfo(struct Node *user) {
 /**
  * Search the given user in the tree
  * @param id is the searched user's id
- * @param head is the root of the tree
+ * @param root is the root element of the tree
  */
 struct Node *search(struct Node *root, int id) {
     // If root is null, return NULL
@@ -401,9 +401,9 @@ struct Node *parseString(char *str) {
 
 /**
  * Import user information from a file
- * @param head is the root of the tree
+ * @param root is the root element of the tree
  */
-Boolean importUserFromFile(struct Node *head) {
+Boolean importUserFromFile(struct Node *root) {
     FILE *fptr;
     char filePath[MAX_PATH_SIZE];
     char tempStr[MAX_USER_INFO_SIZE];
@@ -437,14 +437,14 @@ Boolean importUserFromFile(struct Node *head) {
 
 /**
  * Print a users friends
- * @param head is the root of the tree
+ * @param root is the root element of the tree
  * @param id is the users id to print friends
  */
-void friends(struct Node *head, int id) {
-    struct Node *user = search(head, id);
+void friends(struct Node *root, int id) {
+    struct Node *user = search(root, id);
     int i;
 
     for (i = 0; i < user->friendsCount; i++) {
-        printUserInfo(search(head, id));
+        printUserInfo(search(root, id));
     }
 }
