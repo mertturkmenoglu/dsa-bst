@@ -1,3 +1,50 @@
+/**
+ * Data Structures and Algorithms
+ * Assignment 2
+ * Binary Search Tree
+ *
+ * Deadline: 23 April 2019 23.59
+ *
+ * A social media website holds user information on a binary search tree
+ * Design the system which does given operations on the tree:
+ *
+ * 1. Each node holds user id, name-surname, an array of users friends ids,
+ * left node address, right node address. In your design, each new node should
+ * be allocated on a new memory address.
+ *
+ * 2. Write functions for given operations:
+ *  a.  insertNewUser(): With a given ID, insert a new user without breaking
+ *      tree structure.
+ *  b.  deleteUser(): With a given ID, find user and delete it from the tree.
+ *  c.  contains(): With a given ID, detect if the user in the tree or not.
+ *      If user is in the tree, print name and surname information.
+ *  d.  friends(): With a given ID, if the user exists, print users friends
+ *      name and surname information.
+ *  e.  size(): Print the element number.
+ *  f.  printNext(): With a given ID, print name and surname
+ *      information of all users in the subtree in ascending order with respect
+ *      to their IDs.
+ *  g.  printGreater(): With a given ID, print ID and name-surname information
+ *      of all users whose IDs are greater then the given users.
+ *  h.  printInOrder(): Print ID, name and surname information of all users in
+ *      ascending order with respect to their IDs.
+ * 3. In your main program, create a menu for calling all these functions. Until
+ * user selects "exit", program should call the given function.
+ *
+ * Written and tested on Linux Mint 19 Cinnamon
+ * Kernel 4.15.0-47-generic
+ * gcc (Ubuntu 7.3.0-27ubuntu1~18.04) 7.3.0
+ * GNU Make 4.1
+ * Built for x86_64-pc-linux-gnu
+ *
+ * IDE:
+ * CLion 2019.1.2
+ * Build #CL-191.6707.69, built on April 18, 2019
+ * 
+ * @author Mert Turkmenoglu
+ */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
