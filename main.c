@@ -73,6 +73,8 @@ int size(struct Node *root);
 
 Boolean deleteUserHandler(struct Node *root);
 
+Boolean deleteUser(struct Node *root, int id);
+
 Boolean containsHandler(struct Node *root);
 
 Boolean friendsHandler(struct Node *root);
@@ -421,6 +423,7 @@ Boolean importFromFile(struct Node *root) {
 
     // Read line by line and parse the string
     while (fgets(tempStr, MAX_USER_INFO_SIZE - 1, fptr) != NULL) {
+        // TODO: Change function call
         struct Node *tmp = parseString(tempStr);
         printUserInfo(tmp);
     }
@@ -478,14 +481,57 @@ int size(struct Node *root) {
     return (root == NULL) ? 0 : (size(root->right) + size(root->left) + 1);
 }
 
+
+
+/**
+ * This function handles user delete operations
+ * @param root is the root of the tree
+ * @return successful status
+ */
 Boolean deleteUserHandler(struct Node *root) {
-    // TODO: IMPLEMENT
-    return True;
+    int id;
+    Boolean status;
+    printf("\nPlease enter user id: ");
+    scanf("%d", &id);
+
+    if (search(root, id) != NULL) {
+        return deleteUser(root, id);
+    } else {
+        return False;
+    }
 }
 
-Boolean containsHandler(struct Node *root) {
+
+/**
+ * This function deletes a user from a tree
+ * It assumes that user is in the tree
+ * @param root is the root element of the tree
+ * @param id is the user's id
+ * @return successful status
+ */
+Boolean deleteUser(struct Node *root, int id) {
     // TODO: IMPLEMENT
-    return True;
+}
+
+
+/**
+ * This function handles user search operations
+ * @param root is the root element of the tree
+ * @return successful status
+ */
+Boolean containsHandler(struct Node *root) {
+    int id;
+    printf("\nPlease enter user id: ");
+    scanf("%d", &id);
+    struct Node *tempUser = search(root, id);
+    if (tempUser != NULL) {
+        printf("\nUser is in the tree. Informations: \n");
+        printUserInfo(tempUser);
+        return True;
+    } else {
+        printf("\nUser is not in the tree\n");
+        return False;
+    }
 }
 
 Boolean friendsHandler(struct Node *root) {
