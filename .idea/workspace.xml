@@ -30,34 +30,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5609">
-              <caret line="641" column="51" selection-start-line="641" selection-start-column="51" selection-end-line="641" selection-end-column="51" />
+            <state relative-caret-position="856">
+              <caret line="682" column="5" lean-forward="true" selection-start-line="682" selection-start-column="5" selection-end-line="682" selection-end-column="5" />
               <folding>
                 <element signature="e#364#382#0" expanded="true" />
-                <element signature="e#1351#2824#0" />
-                <element signature="e#2779#2875#0" />
-                <element signature="e#2779#2986#0" />
-                <element signature="e#2989#3137#0" />
-                <element signature="e#2989#4467#0" />
-                <element signature="e#4470#4548#0" />
-                <element signature="e#4470#5048#0" />
-                <element signature="e#5051#5282#0" />
-                <element signature="e#5972#6038#0" />
-                <element signature="e#5972#6388#0" />
-                <element signature="e#6391#6521#0" />
-                <element signature="e#6391#6995#0" />
-                <element signature="e#6998#7107#0" />
-                <element signature="e#6998#9221#0" />
-                <element signature="e#9224#9317#0" />
-                <element signature="e#10099#10224#0" />
-                <element signature="e#10099#10416#0" />
-                <element signature="e#10694#10733#0" />
-                <element signature="e#10694#10841#0" />
-                <element signature="e#11578#11617#0" />
-                <element signature="e#11578#11876#0" />
                 <element signature="e#12283#12322#0" />
-                <element signature="e#12812#12851#0" />
-                <element signature="e#12812#13182#0" />
               </folding>
             </state>
           </provider>
@@ -148,12 +125,12 @@
       <option name="presentableId" value="Default" />
       <updated>1555938986809</updated>
       <workItem from="1555938988247" duration="5032000" />
-      <workItem from="1556028793053" duration="8536000" />
+      <workItem from="1556028793053" duration="9264000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13568000" />
+    <option name="totallyTimeSpent" value="14296000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1920" height="1080" extended-state="6" />
@@ -211,34 +188,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5609">
-          <caret line="641" column="51" selection-start-line="641" selection-start-column="51" selection-end-line="641" selection-end-column="51" />
+        <state relative-caret-position="856">
+          <caret line="682" column="5" lean-forward="true" selection-start-line="682" selection-start-column="5" selection-end-line="682" selection-end-column="5" />
           <folding>
             <element signature="e#364#382#0" expanded="true" />
-            <element signature="e#1351#2824#0" />
-            <element signature="e#2779#2875#0" />
-            <element signature="e#2779#2986#0" />
-            <element signature="e#2989#3137#0" />
-            <element signature="e#2989#4467#0" />
-            <element signature="e#4470#4548#0" />
-            <element signature="e#4470#5048#0" />
-            <element signature="e#5051#5282#0" />
-            <element signature="e#5972#6038#0" />
-            <element signature="e#5972#6388#0" />
-            <element signature="e#6391#6521#0" />
-            <element signature="e#6391#6995#0" />
-            <element signature="e#6998#7107#0" />
-            <element signature="e#6998#9221#0" />
-            <element signature="e#9224#9317#0" />
-            <element signature="e#10099#10224#0" />
-            <element signature="e#10099#10416#0" />
-            <element signature="e#10694#10733#0" />
-            <element signature="e#10694#10841#0" />
-            <element signature="e#11578#11617#0" />
-            <element signature="e#11578#11876#0" />
             <element signature="e#12283#12322#0" />
-            <element signature="e#12812#12851#0" />
-            <element signature="e#12812#13182#0" />
           </folding>
         </state>
       </provider>

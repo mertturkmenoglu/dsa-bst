@@ -81,11 +81,11 @@ Boolean printNextHandler(struct Node *root);
 
 Boolean printGreaterHandler(struct Node *root);
 
-Boolean printInOrderHandler(struct Node *root);
-
 struct Node *insertToTree(struct Node *root, struct Node *user);
 
 void printInOrder(struct Node *root);
+
+void printGreater(struct Node *root, int id);
 
 int main() {
     /**
@@ -195,7 +195,7 @@ Boolean caseHandler(struct Node *root, int choice) {
             break;
         case 9:
             printf("\nYou chose printInOrder.\n");
-            printInOrderHandler(root);
+            printInOrder(root);
         default:
             // TODO: Improve error handling;
             printf("Error!");
@@ -543,7 +543,6 @@ int size(struct Node *root) {
  */
 Boolean deleteUserHandler(struct Node *root) {
     int id;
-    Boolean status;
     printf("\nPlease enter user id: ");
     scanf("%d", &id);
 
@@ -648,12 +647,38 @@ void printInOrder(struct Node *root) {
     }
 }
 
+
+/**
+ * This function handles printing operations
+ * @param root is the root element of the tree
+ * @return successful status
+ */
 Boolean printGreaterHandler(struct Node *root) {
-    // TODO: IMPLEMENT
-    return True;
+    int id;
+    printf("\nPlease enter user id: ");
+    scanf("%d", &id);
+
+    if (search(root, id) != NULL) {
+        printGreater(root, id);
+        return True;
+    } else {
+        printf("\nUser is not in the tree\n");
+        return False;
+    }
 }
 
-Boolean printInOrderHandler(struct Node *root) {
-    // TODO: IMPLEMENT
-    return True;
+
+/**
+ * This function prints information of users
+ * whose id's is greater then given id
+ * @param root is the root element of the tree
+ * @param id is the given user's id
+ */
+void printGreater(struct Node *root, int id) {
+    if (root != NULL) {
+        printGreater(root->left, id);
+        if (root->id > id)
+            printUserInfo(root);
+        printGreater(root->right, id);
+    }
 }
