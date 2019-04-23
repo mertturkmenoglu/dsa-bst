@@ -71,6 +71,18 @@ Boolean manualInput(struct Node *root);
 
 int size(struct Node *root);
 
+Boolean deleteUserHandler(struct Node *root);
+
+Boolean containsHandler(struct Node *root);
+
+Boolean friendsHandler(struct Node *root);
+
+Boolean printNextHandler(struct Node *root);
+
+Boolean printGreaterHandler(struct Node *root);
+
+Boolean printInOrderHandler(struct Node *root);
+
 int main() {
     /**
      * osFlag: Holds user operating system information for system commands
@@ -147,7 +159,7 @@ Boolean caseHandler(struct Node *root, int choice) {
     switch (choice) {
         case 1:
             printf("\nYou chose manualInput\n");
-            // TODO: Add function call
+            manualInput(root);
             break;
         case 2:
             printf("\nYou chose importFromFile.\n");
@@ -155,15 +167,15 @@ Boolean caseHandler(struct Node *root, int choice) {
             break;
         case 3:
             printf("\nYou chose deleteUser.\n");
-            // TODO: Add function call
+            deleteUserHandler(root);
             break;
         case 4:
             printf("\nYou chose contains.\n");
-            // TODO: Add function call
+            containsHandler(root);
             break;
         case 5:
             printf("\nYou chose friends.\n");
-            // TODO: Add function call
+            friendsHandler(root);
             break;
         case 6:
             printf("\nYou chose size.\n");
@@ -171,15 +183,15 @@ Boolean caseHandler(struct Node *root, int choice) {
             break;
         case 7:
             printf("\nYou chose printNext.\n");
-            // TODO: Add function call
+            printNextHandler(root);
             break;
         case 8:
             printf("\nYou chose printGreater.\n");
-            // TODO: Add function call
+            printGreaterHandler(root);
             break;
         case 9:
             printf("\nYou chose printInOrder.\n");
-            // TODO: Add function call
+            printInOrderHandler(root);
         default:
             // TODO: Improve error handling;
             printf("Error!");
@@ -464,4 +476,34 @@ Boolean manualInput(struct Node *root) {
  */
 int size(struct Node *root) {
     return (root == NULL) ? 0 : (size(root->right) + size(root->left) + 1);
+}
+
+Boolean deleteUserHandler(struct Node *root) {
+    // TODO: IMPLEMENT
+    return True;
+}
+
+Boolean containsHandler(struct Node *root) {
+    // TODO: IMPLEMENT
+    return True;
+}
+
+Boolean friendsHandler(struct Node *root) {
+    // TODO: IMPLEMENT
+    return True;
+}
+
+Boolean printNextHandler(struct Node *root) {
+    // TODO: IMPLEMENT
+    return True;
+}
+
+Boolean printGreaterHandler(struct Node *root) {
+    // TODO: IMPLEMENT
+    return True;
+}
+
+Boolean printInOrderHandler(struct Node *root) {
+    // TODO: IMPLEMENT
+    return True;
 }
