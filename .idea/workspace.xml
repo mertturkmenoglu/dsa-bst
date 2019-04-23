@@ -30,8 +30,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="537">
-              <caret line="431" column="32" selection-start-line="431" selection-start-column="32" selection-end-line="431" selection-end-column="32" />
+            <state relative-caret-position="5609">
+              <caret line="641" column="51" selection-start-line="641" selection-start-column="51" selection-end-line="641" selection-end-column="51" />
               <folding>
                 <element signature="e#364#382#0" expanded="true" />
                 <element signature="e#1351#2824#0" />
@@ -42,7 +42,6 @@
                 <element signature="e#4470#4548#0" />
                 <element signature="e#4470#5048#0" />
                 <element signature="e#5051#5282#0" />
-                <element signature="e#5051#5969#0" />
                 <element signature="e#5972#6038#0" />
                 <element signature="e#5972#6388#0" />
                 <element signature="e#6391#6521#0" />
@@ -57,7 +56,6 @@
                 <element signature="e#11578#11617#0" />
                 <element signature="e#11578#11876#0" />
                 <element signature="e#12283#12322#0" />
-                <element signature="e#12283#12409#0" />
                 <element signature="e#12812#12851#0" />
                 <element signature="e#12812#13182#0" />
               </folding>
@@ -150,12 +148,12 @@
       <option name="presentableId" value="Default" />
       <updated>1555938986809</updated>
       <workItem from="1555938988247" duration="5032000" />
-      <workItem from="1556028793053" duration="7263000" />
+      <workItem from="1556028793053" duration="8536000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12295000" />
+    <option name="totallyTimeSpent" value="13568000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1920" height="1080" extended-state="6" />
@@ -213,8 +211,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
-          <caret line="431" column="32" selection-start-line="431" selection-start-column="32" selection-end-line="431" selection-end-column="32" />
+        <state relative-caret-position="5609">
+          <caret line="641" column="51" selection-start-line="641" selection-start-column="51" selection-end-line="641" selection-end-column="51" />
           <folding>
             <element signature="e#364#382#0" expanded="true" />
             <element signature="e#1351#2824#0" />
@@ -225,7 +223,6 @@
             <element signature="e#4470#4548#0" />
             <element signature="e#4470#5048#0" />
             <element signature="e#5051#5282#0" />
-            <element signature="e#5051#5969#0" />
             <element signature="e#5972#6038#0" />
             <element signature="e#5972#6388#0" />
             <element signature="e#6391#6521#0" />
@@ -240,7 +237,6 @@
             <element signature="e#11578#11617#0" />
             <element signature="e#11578#11876#0" />
             <element signature="e#12283#12322#0" />
-            <element signature="e#12283#12409#0" />
             <element signature="e#12812#12851#0" />
             <element signature="e#12812#13182#0" />
           </folding>

@@ -65,8 +65,6 @@ Boolean importFromFile(struct Node *root);
 
 void friends(struct Node *root, int id);
 
-Boolean insertNewUser(struct Node *root);
-
 Boolean manualInput(struct Node *root);
 
 int size(struct Node *root);
@@ -85,7 +83,9 @@ Boolean printGreaterHandler(struct Node *root);
 
 Boolean printInOrderHandler(struct Node *root);
 
-struct Node* insertToTree(struct Node *root, struct Node *user);
+struct Node *insertToTree(struct Node *root, struct Node *user);
+
+void printInOrder(struct Node *root);
 
 int main() {
     /**
@@ -233,7 +233,7 @@ void printMenu() {
  * @return a new user instance
  */
 struct Node *createNewUser(int id, char name[MAX_NAME_LENGTH], const int *friends, int friendsCount) {
-    struct Node* user;
+    struct Node *user;
     // Memory allocation for struct
     user = malloc(sizeof(struct Node));
 
@@ -461,7 +461,7 @@ void friends(struct Node *root, int id) {
  * @param user is the new user to add the tree
  * @return a pointer to node
  */
-struct Node* insertToTree(struct Node *root, struct Node *user) {
+struct Node *insertToTree(struct Node *root, struct Node *user) {
     // If the root is empty, root is now the user
     if (root == NULL)
         root = user;
@@ -472,7 +472,7 @@ struct Node* insertToTree(struct Node *root, struct Node *user) {
 
     // Look for left branch
     if (user->id < root->id) {
-        root->left  = insertToTree(root->left, user);
+        root->left = insertToTree(root->left, user);
     } else if (user->id > root->id) {
         // Look for right branch
         root->right = insertToTree(root->right, user);
@@ -481,6 +481,7 @@ struct Node* insertToTree(struct Node *root, struct Node *user) {
     // Return a pointer to node
     return root;
 }
+
 
 /**
  * Insert a new user to tree manually
@@ -533,7 +534,6 @@ Boolean manualInput(struct Node *root) {
 int size(struct Node *root) {
     return (root == NULL) ? 0 : (size(root->right) + size(root->left) + 1);
 }
-
 
 
 /**
@@ -608,9 +608,44 @@ Boolean friendsHandler(struct Node *root) {
     }
 }
 
+
+/**
+ * This function handles printing tree
+ * @param root is the root element of the tree
+ * @return successful status
+ */
 Boolean printNextHandler(struct Node *root) {
-    // TODO: IMPLEMENT
-    return True;
+    int id;
+    printf("Please enter user id: ");
+    scanf("%d", &id);
+
+    struct Node *tempNode = search(root, id);
+
+    if (tempNode != NULL) {
+        printInOrder(tempNode);
+        return True;
+    } else {
+        printf("\nUser is not in the tree");
+        return False;
+    }
+}
+
+
+/**
+ * This function prints nodes of a given tree
+ * @param root is the root element of the tree
+ */
+void printInOrder(struct Node *root) {
+    /*
+     * If root is not NULL, print left hand-side tree elements
+     * then print the root
+     * then print the right hand-side tree elements
+     */
+    if (root != NULL) {
+        printInOrder(root->left);
+        printUserInfo(root);
+        printInOrder(root->right);
+    }
 }
 
 Boolean printGreaterHandler(struct Node *root) {
