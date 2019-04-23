@@ -30,8 +30,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="552" column="20" selection-start-line="552" selection-start-column="20" selection-end-line="552" selection-end-column="20" />
+            <state relative-caret-position="2">
+              <caret line="419" column="41" lean-forward="true" selection-start-line="419" selection-start-column="41" selection-end-line="419" selection-end-column="41" />
               <folding>
                 <element signature="e#364#382#0" expanded="true" />
                 <element signature="e#12283#12322#0" />
@@ -47,6 +47,8 @@
       <find>head</find>
       <find>newUser</find>
       <find>size</find>
+      <find>insert</find>
+      <find>insertToTree</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -125,24 +127,23 @@
       <option name="presentableId" value="Default" />
       <updated>1555938986809</updated>
       <workItem from="1555938988247" duration="5032000" />
-      <workItem from="1556028793053" duration="10396000" />
+      <workItem from="1556028793053" duration="14471000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15428000" />
+    <option name="totallyTimeSpent" value="19503000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1920" height="1080" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.2561366" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.8263598" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.9686192" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39958158" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -160,6 +161,27 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.c</url>
+          <line>105</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.c</url>
+          <line>405</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.c</url>
+          <line>171</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
@@ -188,8 +210,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="552" column="20" selection-start-line="552" selection-start-column="20" selection-end-line="552" selection-end-column="20" />
+        <state relative-caret-position="2">
+          <caret line="419" column="41" lean-forward="true" selection-start-line="419" selection-start-column="41" selection-end-line="419" selection-end-column="41" />
           <folding>
             <element signature="e#364#382#0" expanded="true" />
             <element signature="e#12283#12322#0" />

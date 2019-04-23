@@ -46,12 +46,9 @@ struct Node {
 
 typedef int Boolean;
 
-
-void clearScreen(int osFlag);
-
 void printMenu();
 
-Boolean caseHandler(struct Node *root, int choice);
+struct Node *caseHandler(struct Node *root, int choice);
 
 struct Node *createNewUser(int id, char *name, const int *friends, int friendsCount);
 
@@ -61,7 +58,7 @@ struct Node *search(struct Node *root, int id);
 
 struct Node *parseString(char *str);
 
-Boolean importFromFile(struct Node *root);
+struct Node *importFromFile(struct Node *root);
 
 void friends(struct Node *root, int id);
 
@@ -96,45 +93,26 @@ int main() {
      * exitFlag: Holds true operation value about loops
      * root: Root element of the Binary Search tree
      */
-    int osFlag;
+
     int choice;
     Boolean exitFlag = False;
     struct Node *root = NULL;
-
-    printf("Welcome. For further operations, please state your Operating system:\n");
-    printf("For Linux, press 1\n");
-    printf("For Windows, press 2\n");
-
-    /* Take operation system information from user */
-    do {
-        scanf("%d", &osFlag);
-        if ((osFlag != 1) && (osFlag != 2))
-            printf("You entered invalid number. Try again.\n");
-        else
-            exitFlag = True;
-    } while (exitFlag != True);
-
-    exitFlag = False;
 
     /**
      * Main loop. Depending on the input, it calls functions
      * or exits the loop
      */
     do {
-        clearScreen(osFlag);
         printMenu();
         printf("Enter your choice: ");
         scanf("%d", &choice);
-        if ((choice < 0) || (choice > 8)) {
+        if ((choice < 0) || (choice > 10)) {
             printf("You entered invalid number. Please check again\n");
         }
         if (choice == 0) {
             exitFlag = True;
         } else {
-            Boolean isSuccess = caseHandler(root, choice);
-            if (isSuccess == False) {
-                exit(-1);
-            }
+            root = caseHandler(root, choice);
         }
     } while (exitFlag != True);
 
@@ -144,24 +122,11 @@ int main() {
 
 
 /**
- * This function clears terminal screen
- * @param osFlag is operating system information
- */
-void clearScreen(int osFlag) {
-    if (osFlag == 1)
-        system("clear");
-    else
-        system("cls");
-}
-
-
-/**
 * caseHandler function handles input cases
 * @param root is the root element of the binary search tree
 * @param choice is the function number
 */
-Boolean caseHandler(struct Node *root, int choice) {
-    Boolean isSuccess = True;
+struct Node *caseHandler(struct Node *root, int choice) {
     switch (choice) {
         case 1:
             printf("\nYou chose manualInput\n");
@@ -169,7 +134,7 @@ Boolean caseHandler(struct Node *root, int choice) {
             break;
         case 2:
             printf("\nYou chose importFromFile.\n");
-            importFromFile(root);
+            root = importFromFile(root);
             break;
         case 3:
             printf("\nYou chose deleteUser.\n");
@@ -198,12 +163,13 @@ Boolean caseHandler(struct Node *root, int choice) {
         case 9:
             printf("\nYou chose printInOrder.\n");
             printInOrder(root);
+            break;
         default:
             // TODO: Improve error handling;
             printf("Error!");
             break;
     }
-    return isSuccess;
+    return root;
 }
 
 
@@ -405,7 +371,7 @@ struct Node *parseString(char *str) {
  * Import user information from a file
  * @param root is the root element of the tree
  */
-Boolean importFromFile(struct Node *root) {
+struct Node *importFromFile(struct Node *root) {
     FILE *fptr;
     char filePath[MAX_PATH_SIZE];
     char tempStr[MAX_USER_INFO_SIZE];
@@ -424,21 +390,24 @@ Boolean importFromFile(struct Node *root) {
         fclose(fptr);
         exit(EXIT_FAILURE);
     }
-
+    int userCounter = 0;
     // Read line by line and parse the string
     while (fgets(tempStr, MAX_USER_INFO_SIZE - 1, fptr) != NULL) {
         struct Node *tmp = parseString(tempStr);
         if (search(root, tmp->id) == NULL) {
             struct Node *tempNode = insertToTree(root, tmp);
-            if (root == NULL)
                 root = tempNode;
+            userCounter++;
+            if(userCounter % 10 == 0) {
+                printInOrder(root);
+            }
         }
     }
 
     // Close file stream
     fclose(fptr);
 
-    return True;
+    return root;
 }
 
 
@@ -452,7 +421,7 @@ void friends(struct Node *root, int id) {
     int i;
 
     for (i = 0; i < user->friendsCount; i++) {
-        printUserInfo(search(root, id));
+        printUserInfo(search(root, user->friends[i]));
     }
 }
 
