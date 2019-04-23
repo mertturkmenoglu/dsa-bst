@@ -88,7 +88,6 @@ void printGreater(struct Node *root, int id);
 
 int main() {
     /**
-     * osFlag: Holds user operating system information for system commands
      * choice: Holds operation information
      * exitFlag: Holds true operation value about loops
      * root: Root element of the Binary Search tree
