@@ -3,34 +3,6 @@
  * Assignment 2
  * Binary Search Tree
  *
- * Deadline: 23 April 2019 23.59
- *
- * A social media website holds user information on a binary search tree
- * Design the system which does given operations on the tree:
- *
- * 1. Each node holds user id, name-surname, an array of users friends ids,
- * left node address, right node address. In your design, each new node should
- * be allocated on a new memory address.
- *
- * 2. Write functions for given operations:
- *  a.  insertNewUser(): With a given ID, insert a new user without breaking
- *      tree structure.
- *  b.  deleteUser(): With a given ID, find user and delete it from the tree.
- *  c.  contains(): With a given ID, detect if the user in the tree or not.
- *      If user is in the tree, print name and surname information.
- *  d.  friends(): With a given ID, if the user exists, print users friends
- *      name and surname information.
- *  e.  size(): Print the element number.
- *  f.  printNext(): With a given ID, print name and surname
- *      information of all users in the subtree in ascending order with respect
- *      to their IDs.
- *  g.  printGreater(): With a given ID, print ID and name-surname information
- *      of all users whose IDs are greater then the given users.
- *  h.  printInOrder(): Print ID, name and surname information of all users in
- *      ascending order with respect to their IDs.
- * 3. In your main program, create a menu for calling all these functions. Until
- * user selects "exit", program should call the given function.
- *
  * Written and tested on Linux Mint 19 Cinnamon
  * Kernel 4.15.0-47-generic
  * gcc (Ubuntu 7.3.0-27ubuntu1~18.04) 7.3.0
@@ -50,13 +22,14 @@
 #include <string.h>
 #include <ctype.h>
 #include <errno.h>
+#include <unistd.h>
 
 extern int errno;
 
 #define True 1
 #define False 0
 
-#define MAX_NAME_SIZE 30
+#define MAX_NAME_LENGTH 50
 #define MAX_FRIEND_SIZE 50
 
 #define MAX_PATH_SIZE 100
@@ -64,7 +37,7 @@ extern int errno;
 
 struct Node {
     int id;
-    char *name;
+    char name[MAX_NAME_LENGTH];
     int friends[MAX_FRIEND_SIZE];
     int friendsCount;
     struct Node *left;
@@ -88,10 +61,13 @@ struct Node *search(struct Node *root, int id);
 
 struct Node *parseString(char *str);
 
-Boolean importUserFromFile(struct Node *root);
+Boolean importFromFile(struct Node *root);
 
 void friends(struct Node *root, int id);
 
+Boolean insertNewUser(struct Node *root);
+
+Boolean manualInput(struct Node *root);
 
 int main() {
     /**
@@ -168,37 +144,40 @@ Boolean caseHandler(struct Node *root, int choice) {
     Boolean isSuccess = True;
     switch (choice) {
         case 1:
-            printf("\nYou chose insertNewUser.\n");
-            // TODO: insertNewUser call
+            printf("\nYou chose manualInput\n");
+            // TODO: Add function call
             break;
         case 2:
-            printf("\nYou chose deleteUser.\n");
-            // TODO: deleteUser call
+            printf("\nYou chose importFromFile.\n");
+            // TODO: Add function call
             break;
         case 3:
-            printf("\nYou chose contains.\n");
-            // TODO: contains call
+            printf("\nYou chose deleteUser.\n");
+            // TODO: Add function call
             break;
         case 4:
-            printf("\nYou chose friends.\n");
-            // TODO: friends call
+            printf("\nYou chose contains.\n");
+            // TODO: Add function call
             break;
         case 5:
-            printf("\nYou chose size.\n");
-            // TODO: size call
+            printf("\nYou chose friends.\n");
+            // TODO: Add function call
             break;
         case 6:
-            printf("\nYou chose printNext.\n");
-            // TODO: printNext call
+            printf("\nYou chose size.\n");
+            // TODO: Add function call
             break;
         case 7:
-            printf("\nYou chose printGreater.\n");
-            // TODO: printGreater call
+            printf("\nYou chose printNext.\n");
+            // TODO: Add function call
             break;
         case 8:
-            printf("\nYou chose printInOrder.\n");
-            // TODO: printInOrder call
+            printf("\nYou chose printGreater.\n");
+            // TODO: Add function call
             break;
+        case 9:
+            printf("\nYou chose printInOrder.\n");
+            // TODO: Add function call
         default:
             // TODO: Improve error handling;
             printf("Error!");
@@ -213,14 +192,15 @@ Boolean caseHandler(struct Node *root, int choice) {
  * and numbers to terminal
  */
 void printMenu() {
-    printf("1. insertNewUser");
-    printf("\n2. deleteUser");
-    printf("\n3. contains");
-    printf("\n4. friends");
-    printf("\n5. size");
-    printf("\n6. printNext");
-    printf("\n7. printGreater");
-    printf("\n8. printInOrder");
+    printf("\n1. Add a new user to tree manually(manualInput)");
+    printf("\n2. Add users from a file(importFromFile)");
+    printf("\n3. Delete a user from tree(deleteUser)");
+    printf("\n4. Search for a user(contains)");
+    printf("\n5. Print friends of a user(friends)");
+    printf("\n6. Print user count(size)");
+    printf("\n7. printNext");
+    printf("\n8. printGreater");
+    printf("\n9. printInOrder");
     printf("\n0. Exit");
     printf("\n---------------\n");
 }
@@ -234,31 +214,31 @@ void printMenu() {
  * @param friendsCount is the total friend number
  * @return a new user instance
  */
-struct Node *createNewUser(int id, char *name, const int *friends, int friendsCount) {
-    struct Node *newUser;
+struct Node *createNewUser(int id, char name[MAX_NAME_LENGTH], const int *friends, int friendsCount) {
+    struct Node* user;
     // Memory allocation for struct
-    newUser = (struct Node *) malloc(sizeof(struct Node));
+    user = malloc(sizeof(struct Node));
 
     // Value assignments
-    newUser->id = id;
-    strcpy(newUser->name, name);
+    user->id = id;
+    strcpy(user->name, name);
 
     // Friend list assignment
     int i;
     for (i = 0; i < friendsCount; i++) {
-        newUser->friends[i] = friends[i];
+        user->friends[i] = friends[i];
     }
 
     // Total friend count
-    newUser->friendsCount = friendsCount;
+    user->friendsCount = friendsCount;
 
     // A new node has no children
     // Left and right node pointers should be NULL
-    newUser->left = NULL;
-    newUser->right = NULL;
+    user->left = NULL;
+    user->right = NULL;
 
     // Return a pointer to new user
-    return newUser;
+    return user;
 }
 
 
@@ -394,6 +374,8 @@ struct Node *parseString(char *str) {
         }
     }
 
+    list[k++] = atoi(temp);
+
     // Return a new user with given information
     return createNewUser(id, name, list, k);
 }
@@ -403,7 +385,7 @@ struct Node *parseString(char *str) {
  * Import user information from a file
  * @param root is the root element of the tree
  */
-Boolean importUserFromFile(struct Node *root) {
+Boolean importFromFile(struct Node *root) {
     FILE *fptr;
     char filePath[MAX_PATH_SIZE];
     char tempStr[MAX_USER_INFO_SIZE];
@@ -425,7 +407,8 @@ Boolean importUserFromFile(struct Node *root) {
 
     // Read line by line and parse the string
     while (fgets(tempStr, MAX_USER_INFO_SIZE - 1, fptr) != NULL) {
-        parseString(tempStr);
+        struct Node *tmp = parseString(tempStr);
+        printUserInfo(tmp);
     }
 
     // Close file stream
@@ -447,4 +430,20 @@ void friends(struct Node *root, int id) {
     for (i = 0; i < user->friendsCount; i++) {
         printUserInfo(search(root, id));
     }
+}
+
+
+/**
+ * Insert a new user to the tree
+ * @param root is the root element of the tree
+ */
+Boolean insertNewUser(struct Node *root) {
+    // TODO: IMPLEMENT
+    return True;
+}
+
+
+Boolean manualInput(struct Node *root) {
+    // TODO: IMPLEMENT
+    return True;
 }
