@@ -69,6 +69,8 @@ Boolean insertNewUser(struct Node *root);
 
 Boolean manualInput(struct Node *root);
 
+int size(struct Node *root);
+
 int main() {
     /**
      * osFlag: Holds user operating system information for system commands
@@ -149,7 +151,7 @@ Boolean caseHandler(struct Node *root, int choice) {
             break;
         case 2:
             printf("\nYou chose importFromFile.\n");
-            // TODO: Add function call
+            importFromFile(root);
             break;
         case 3:
             printf("\nYou chose deleteUser.\n");
@@ -165,7 +167,7 @@ Boolean caseHandler(struct Node *root, int choice) {
             break;
         case 6:
             printf("\nYou chose size.\n");
-            // TODO: Add function call
+            printf("%d\n", size(root));
             break;
         case 7:
             printf("\nYou chose printNext.\n");
@@ -446,4 +448,20 @@ Boolean insertNewUser(struct Node *root) {
 Boolean manualInput(struct Node *root) {
     // TODO: IMPLEMENT
     return True;
+}
+
+
+/**
+ * Calculates element number of a given tree recursively
+ * If root of the given(instance) tree is NULL, it is either empty
+ * or it is a terminal node.
+ * Otherwise iterate over left and right branches of the node
+ * Size of a tree = Right hand-side tree element count +
+ * Left hand-side tree element count + Root itself
+ * size = rhs + lhs + 1
+ * @param root is the root element of the given tree
+ * @return element number of the tree
+ */
+int size(struct Node *root) {
+    return (root == NULL) ? 0 : (size(root->right) + size(root->left) + 1);
 }
