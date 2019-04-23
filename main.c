@@ -85,6 +85,8 @@ Boolean printGreaterHandler(struct Node *root);
 
 Boolean printInOrderHandler(struct Node *root);
 
+struct Node* insertToTree(struct Node *root, struct Node *user);
+
 int main() {
     /**
      * osFlag: Holds user operating system information for system commands
@@ -451,18 +453,66 @@ void friends(struct Node *root, int id) {
 
 
 /**
- * Insert a new user to the tree
+ * Insert a given user to the tree without breaking structure
  * @param root is the root element of the tree
+ * @param user is the new user to add the tree
+ * @return a pointer to node
  */
-Boolean insertNewUser(struct Node *root) {
-    // TODO: IMPLEMENT
-    return True;
+struct Node* insertToTree(struct Node *root, struct Node *user) {
+    // If the root is empty, root is now the user
+    if (root == NULL)
+        root = user;
+
+    // If root is not empty
+    // Search for right and left branches
+    // Find an appropriate terminal for user
+
+    // Look for left branch
+    if (user->id < root->id) {
+        root->left  = insertToTree(root->left, user);
+    } else if (user->id > root->id) {
+        // Look for right branch
+        root->right = insertToTree(root->right, user);
+    }
+
+    // Return a pointer to node
+    return root;
 }
 
-
+/**
+ * Insert a new user to tree manually
+ * @param root is the root element of the tree
+ * @return successful status
+ */
 Boolean manualInput(struct Node *root) {
-    // TODO: IMPLEMENT
-    return True;
+    int i;
+    int id;
+    char name[MAX_NAME_LENGTH];
+    int friendsCount;
+    int list[MAX_FRIEND_SIZE];
+
+    printf("\nPlease enter user id: \n");
+    scanf("%d", &id);
+
+    if (search(root, id) == NULL) {
+        printf("\nPlease enter user name: \n");
+        scanf("%s", name);
+
+        printf("\nPlease enter users friend count: ");
+        scanf("%d", &friendsCount);
+
+        for (i = 0; i < friendsCount; i++) {
+            printf("\nPlease enter friend id: ");
+            scanf("%d", &list[i]);
+        }
+        struct Node *tmpNode = insertToTree(root, createNewUser(id, name, list, friendsCount));
+        if (root == NULL)
+            root = tmpNode;
+        return True;
+    } else {
+        printf("\nUser is already in the tree");
+        return False;
+    }
 }
 
 
@@ -534,6 +584,12 @@ Boolean containsHandler(struct Node *root) {
     }
 }
 
+
+/**
+ * This function handles friend printing operations
+ * @param root is the root element of the tree
+ * @return successful status
+ */
 Boolean friendsHandler(struct Node *root) {
     int id;
     printf("\nPlease enter user id: ");
