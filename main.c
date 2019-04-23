@@ -71,7 +71,9 @@ int size(struct Node *root);
 
 Boolean deleteUserHandler(struct Node *root);
 
-Boolean deleteUser(struct Node *root, int id);
+struct Node *deleteUser(struct Node *root, int id);
+
+struct Node *findMinimumValueNode(struct Node *root);
 
 Boolean containsHandler(struct Node *root);
 
@@ -547,7 +549,8 @@ Boolean deleteUserHandler(struct Node *root) {
     scanf("%d", &id);
 
     if (search(root, id) != NULL) {
-        return deleteUser(root, id);
+        root = deleteUser(root, id);
+        return True;
     } else {
         return False;
     }
@@ -561,8 +564,82 @@ Boolean deleteUserHandler(struct Node *root) {
  * @param id is the user's id
  * @return successful status
  */
-Boolean deleteUser(struct Node *root, int id) {
-    // TODO: IMPLEMENT
+struct Node *deleteUser(struct Node *root, int id) {
+    /*
+     * If the root of the tree is NULL
+     * then tree is empty.
+     */
+    if (root == NULL)
+        return root;
+
+    /*
+     * If given id is less than currently looked node's id
+     * user is in the left hand-side sub-tree of this node
+     *
+     * If given id is greater than currently looked node's id
+     * user is in the right hand-side sub-tree of this node
+     *
+     * If id is equal to this node's id, it is the searched user.
+     * Search for the node is completed. It should be deleted.
+     *
+     *
+     */
+    if (id < root->id) {
+        root->left = deleteUser(root->left, id);
+    } else if (id > root->id) {
+        root->right = deleteUser(root->right, id);
+    } else {
+        /*
+         * If the root has one (left or right)
+         * swap the other child node with the parent
+         * then free the memory for the old parent node
+         */
+        if (root->left == NULL) {
+            struct Node *tempNode = root->right;
+            free(root);
+            return tempNode;
+        } else if (root->right == NULL) {
+            struct Node *tempNode = root->left;
+            free(root);
+            return tempNode;
+        }
+
+        /*
+         * If node has two children, node with the smallest id on the
+         * right hand-side sub-tree should be moved to this node
+         */
+        struct Node *tempNode = findMinimumValueNode(root->right);
+        root->id = tempNode->id;
+
+        /*
+         * Then the moved node should be deleted.
+         * Call the function again recursively
+         */
+        root->right = deleteUser(root->right, tempNode->id);
+    }
+    return root;
+}
+
+
+/**
+ * This function finds the node which has the minimum id value
+ * @param root is the root element of the tree
+ * @return node which has the minimum id
+ */
+struct Node *findMinimumValueNode(struct Node *root) {
+    struct Node *currentNode = root;
+
+    /*
+     * While currently looked node has a left hand-side child node
+     * go to that node and look again.
+     */
+    while (currentNode->left != NULL)
+        currentNode = currentNode->left;
+
+    /*
+     * Finally, return the most left hand-side child node
+     */
+    return currentNode;
 }
 
 
