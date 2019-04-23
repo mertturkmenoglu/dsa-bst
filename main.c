@@ -535,8 +535,18 @@ Boolean containsHandler(struct Node *root) {
 }
 
 Boolean friendsHandler(struct Node *root) {
-    // TODO: IMPLEMENT
-    return True;
+    int id;
+    printf("\nPlease enter user id: ");
+    scanf("%d", &id);
+    struct Node *tempUser = search(root, id);
+
+    if (tempUser != NULL) {
+        friends(root, id);
+        return True;
+    } else {
+        printf("\nUser is not in the tree\n");
+        return False;
+    }
 }
 
 Boolean printNextHandler(struct Node *root) {
