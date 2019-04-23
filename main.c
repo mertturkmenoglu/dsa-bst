@@ -425,9 +425,12 @@ Boolean importFromFile(struct Node *root) {
 
     // Read line by line and parse the string
     while (fgets(tempStr, MAX_USER_INFO_SIZE - 1, fptr) != NULL) {
-        // TODO: Change function call
         struct Node *tmp = parseString(tempStr);
-        printUserInfo(tmp);
+        if (search(root, tmp->id) == NULL) {
+            struct Node *tempNode = insertToTree(root, tmp);
+            if (root == NULL)
+                root = tempNode;
+        }
     }
 
     // Close file stream

@@ -30,8 +30,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="484" column="28" selection-start-line="484" selection-start-column="28" selection-end-line="484" selection-end-column="28" />
+            <state relative-caret-position="537">
+              <caret line="431" column="32" selection-start-line="431" selection-start-column="32" selection-end-line="431" selection-end-column="32" />
               <folding>
                 <element signature="e#364#382#0" expanded="true" />
                 <element signature="e#1351#2824#0" />
@@ -50,7 +50,6 @@
                 <element signature="e#6998#7107#0" />
                 <element signature="e#6998#9221#0" />
                 <element signature="e#9224#9317#0" />
-                <element signature="e#9239#10111#0" />
                 <element signature="e#10099#10224#0" />
                 <element signature="e#10099#10416#0" />
                 <element signature="e#10694#10733#0" />
@@ -151,12 +150,12 @@
       <option name="presentableId" value="Default" />
       <updated>1555938986809</updated>
       <workItem from="1555938988247" duration="5032000" />
-      <workItem from="1556028793053" duration="7109000" />
+      <workItem from="1556028793053" duration="7263000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12141000" />
+    <option name="totallyTimeSpent" value="12295000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1920" height="1080" extended-state="6" />
@@ -214,8 +213,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="484" column="28" selection-start-line="484" selection-start-column="28" selection-end-line="484" selection-end-column="28" />
+        <state relative-caret-position="537">
+          <caret line="431" column="32" selection-start-line="431" selection-start-column="32" selection-end-line="431" selection-end-column="32" />
           <folding>
             <element signature="e#364#382#0" expanded="true" />
             <element signature="e#1351#2824#0" />
@@ -234,7 +233,6 @@
             <element signature="e#6998#7107#0" />
             <element signature="e#6998#9221#0" />
             <element signature="e#9224#9317#0" />
-            <element signature="e#9239#10111#0" />
             <element signature="e#10099#10224#0" />
             <element signature="e#10099#10416#0" />
             <element signature="e#10694#10733#0" />
