@@ -232,6 +232,9 @@ struct Node *createNewUser(int id, char name[MAX_NAME_LENGTH], const int *friend
  * @param user is the given user
  */
 void printUserInfo(struct Node *user) {
+    if (user == NULL) {
+        return;
+    }
     printf("**********\n");
     printf("ID:\t%d\n", user->id);
     printf("Name:\t%s\n", user->name);
